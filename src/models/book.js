@@ -1,9 +1,11 @@
 // Libraries
-const { Sequelize, Model, DataTypes } = require('sequelize');
+import { DataTypes, Model } from 'sequelize';
 
-const sequelize = new Sequelize('mysql://books_user:books123@localhost:3306/books');
+// Config
+import { dbConn } from '../db/connection.js';
 
-class Book extends Model {}
+export class Book extends Model {}
+
 Book.init(
   {
     title: DataTypes.STRING,
@@ -11,11 +13,5 @@ Book.init(
     year: DataTypes.INTEGER,
     editorial: DataTypes.STRING,
   },
-  { sequelize, modelName: 'Book', timestamps: false },
+  { sequelize: dbConn, modelName: 'Book', timestamps: false },
 );
-
-(async () => {
-  await sequelize.sync();
-  const books = await Book.findAll();
-  books.forEach((book) => console.log(book.toJSON()));
-})();

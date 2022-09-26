@@ -1,11 +1,9 @@
 // Libraries
-const { Router } = require('express');
+import { Router } from 'express';
 
 // Routes
-const bookRouter = require('./books');
+import { bookRouter } from './books.js';
 
-const router = new Router();
+export const router = new Router();
 
 router.use('/books', bookRouter);
-
-module.exports = router;

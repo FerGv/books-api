@@ -1,14 +1,23 @@
 // Libraries
-const express = require('express');
+import cors from 'cors';
+import express from 'express';
+
+// Config
+import config from './config/index.js';
 
 // Routes
-const router = require('./routes');
+import { router } from './routes/index.js';
 
-const main = async () => {
+const main = () => {
   const app = express();
-  app.use(router);
-  await app.listen(7001);
-  console.log('Listening in port 7001');
+
+  // Middleware
+  app.use(express.json());
+  app.use(cors());
+
+  app.use('/api', router);
+  app.listen(config.PORT);
+  console.log(`Listening on port ${config.PORT}`);
 };
 
 main();

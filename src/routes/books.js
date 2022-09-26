@@ -1,22 +1,32 @@
 // Libraries
-const { Router } = require('express');
+import { Router } from 'express';
 
-const router = new Router();
+// Services
+import { bookService } from '../services/index.js';
 
-router.get('/', (req, res) => {
-  res.send('hello world');
+export const bookRouter = new Router();
+
+bookRouter.get('/', async (req, res) => {
+  const books = await bookService.getBooks();
+  res.json(books);
 });
 
-router.post('/', (req, res) => {
-  res.send('hello world post');
+bookRouter.post('/', async (req, res) => {
+  const book = await bookService.createBook(req.body);
+  res.json(book);
 });
 
-router.put('/:id', (req, res) => {
-  res.send('hello world put');
+bookRouter.get('/:id', async (req, res) => {
+  const book = await bookService.getBook(req.params.id);
+  res.send(book);
 });
 
-router.delete('/:id', (req, res) => {
-  res.send('hello world delete');
+bookRouter.put('/:id', async (req, res) => {
+  const book = await bookService.updateBook(req.params.id, req.body);
+  res.send(book);
 });
 
-module.exports = router;
+bookRouter.delete('/:id', async (req, res) => {
+  await bookService.deleteBook(req.params.id);
+  res.status(204).end();
+});
