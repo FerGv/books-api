@@ -8,6 +8,9 @@ import config from './config/index.js';
 // Routes
 import { router } from './routes/index.js';
 
+// Utils
+import { log } from './utils/logging.js';
+
 const main = () => {
   const app = express();
 
@@ -17,7 +20,7 @@ const main = () => {
 
   app.use('/api', router);
   app.listen(config.PORT);
-  console.log(`Listening on port ${config.PORT}`);
+  log(`Listening on port ${config.PORT}`);
 };
 
 main();
