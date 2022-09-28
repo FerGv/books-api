@@ -1,6 +1,7 @@
 // Libraries
 import cors from 'cors';
 import express from 'express';
+import figlet from 'figlet';
 import morgan from 'morgan';
 
 // Config
@@ -27,6 +28,7 @@ const main = () => {
   app.use('/api', router);
   app.listen(config.PORT);
   log(`Listening on port ${config.PORT}`);
+  console.log(figlet.textSync('BOOKS API'));
 };
 
 main();
