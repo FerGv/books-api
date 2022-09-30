@@ -27,7 +27,7 @@ const main = () => {
 
   app.use('/api', router);
   app.listen(config.PORT);
-  log(`Listening on port ${config.PORT}`);
+  log(`Listening on http://localhost:${config.PORT}`);
   console.log(figlet.textSync('BOOKS API'));
 };
 

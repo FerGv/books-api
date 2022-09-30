@@ -8,6 +8,7 @@ import config from '../config/index.js';
 // Utils
 import { log } from '../utils/logging.js';
 
-export const dbConn = new Sequelize(config.DB_URL);
+const DB_URL = `${config.db.TYPE}://${config.db.USER}:${config.db.PASSWORD}@${config.db.HOST}:${config.db.PORT}/${config.db.NAME}`;
+export const dbConn = new Sequelize(DB_URL);
 
-log(`DB connected to ${config.DB_URL}`, { color: chalk.yellow });
+log(`DB connected to ${DB_URL}`, { color: chalk.yellow });
