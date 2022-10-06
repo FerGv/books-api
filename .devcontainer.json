@@ -1,0 +1,21 @@
+{
+  "name": "books-api",
+  "dockerComposeFile": "./docker-compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mikestead.dotenv",
+        "EditorConfig.EditorConfig",
+        "usernamehw.errorlens",
+        "esbenp.prettier-vscode",
+        "ms-vscode.sublime-keybindings",
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postAttachCommand": "apk update && apk add git"
+}
