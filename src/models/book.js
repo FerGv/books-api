@@ -23,4 +23,4 @@ Book.init(
     tableName: 'books',
   },
 );
-await Book.sync();
+await Book.sync({ alter: true });
