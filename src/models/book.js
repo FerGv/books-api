@@ -12,6 +12,15 @@ Book.init(
     author: DataTypes.STRING,
     year: DataTypes.INTEGER,
     editorial: DataTypes.STRING,
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+    },
   },
-  { sequelize: dbConn, modelName: 'Book', timestamps: false },
+  {
+    sequelize: dbConn,
+    modelName: 'Book',
+    tableName: 'books',
+  },
 );
+await Book.sync();
