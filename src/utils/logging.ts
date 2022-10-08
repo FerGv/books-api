@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Libraries
 import chalk from 'chalk';
 
