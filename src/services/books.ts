@@ -1,17 +1,20 @@
-// Models
-import { Book } from '../models/index.js';
+// Interfaces
+import { IBook, IBookCreation } from '../interfaces';
 
-export const createBook = async (data) => {
+// Models
+import { Book } from '../models';
+
+export const createBook = async (data: IBookCreation) => {
   const book = await Book.create(data);
 
   return book;
 };
 
-export const deleteBook = async (id) => {
+export const deleteBook = async (id: string) => {
   await Book.destroy({ where: { id } });
 };
 
-export const getBook = async (id) => {
+export const getBook = async (id: string) => {
   const [book = {}] = await Book.findAll({ where: { id } });
 
   return book;
@@ -23,7 +26,7 @@ export const getBooks = async () => {
   return books;
 };
 
-export const updateBook = async (id, data) => {
+export const updateBook = async (id: string, data: IBook) => {
   await Book.update(data, { where: { id } });
   const book = await getBook(id);
 

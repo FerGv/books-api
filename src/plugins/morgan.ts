@@ -2,7 +2,7 @@
 import chalk from 'chalk';
 import morgan from 'morgan';
 
-export const createTokens = () => {
+export const createMorganTokens = () => {
   morgan.token('method-color', (req) => {
     switch (req.method) {
       case 'GET':
@@ -23,14 +23,16 @@ export const createTokens = () => {
   });
 
   morgan.token('status-color', (req, res) => {
-    if (/^2/.test(res.statusCode)) {
+    const statusCode = res.statusCode.toString();
+
+    if (/^2/.test(statusCode)) {
       return chalk.green(res.statusCode);
     }
 
-    if (/^(4|5)/.test(res.statusCode)) {
+    if (/^(4|5)/.test(statusCode)) {
       return chalk.red(res.statusCode);
     }
 
-    return res.statusCode;
+    return statusCode;
   });
 };

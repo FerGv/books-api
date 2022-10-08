@@ -2,8 +2,8 @@
 import { Router } from 'express';
 
 // Routes
-import { bookRouter } from './books.js';
+import { bookRouter } from './books';
 
-export const router = new Router();
+export const router = Router();
 
 router.use('/books', bookRouter);

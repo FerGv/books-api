@@ -2,9 +2,9 @@
 import { Router } from 'express';
 
 // Services
-import { bookService } from '../services/index.js';
+import { bookService } from '../services';
 
-export const bookRouter = new Router();
+export const bookRouter = Router();
 
 bookRouter.get('/', async (req, res) => {
   const books = await bookService.getBooks();

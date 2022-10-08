@@ -3,7 +3,6 @@
   "dockerComposeFile": "./docker-compose.yaml",
   "service": "app",
   "workspaceFolder": "/app",
-  "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -16,6 +15,5 @@
         "ms-azuretools.vscode-docker"
       ]
     }
-  },
-  "postAttachCommand": "apk update && apk add git"
+  }
 }

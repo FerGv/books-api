@@ -5,19 +5,19 @@ import figlet from 'figlet';
 import morgan from 'morgan';
 
 // Config
-import config from './config/index.js';
+import config from './config';
 
 // Plugins
-import { createTokens } from './plugins/morgan.js';
+import { createMorganTokens } from './plugins/morgan';
 
 // Routes
-import { router } from './routes/index.js';
+import { router } from './routes';
 
 // Utils
-import { log } from './utils/logging.js';
+import { log } from './utils/logging';
 
 const main = () => {
-  createTokens();
+  createMorganTokens();
   const app = express();
 
   // Middleware
