@@ -13,7 +13,7 @@ bookRouter.get('/', async (req, res) => {
 
 bookRouter.post('/', async (req, res) => {
   const book = await bookService.createBook(req.body);
-  res.json(book);
+  res.status(201).json(book);
 });
 
 bookRouter.get('/:id', async (req, res) => {
@@ -28,5 +28,5 @@ bookRouter.put('/:id', async (req, res) => {
 
 bookRouter.delete('/:id', async (req, res) => {
   await bookService.deleteBook(req.params.id);
-  res.status(204).end();
+  res.sendStatus(204);
 });

@@ -1,6 +1,6 @@
 // Libraries
 import chalk from 'chalk';
-import { Sequelize } from 'sequelize';
+import { Sequelize, Dialect } from 'sequelize';
 
 // Config
 import config from '../config';
@@ -8,11 +8,18 @@ import config from '../config';
 // Utils
 import { log } from '../utils/logging';
 
-const DB_URL = `${config.db.TYPE}://${config.db.USER}:${config.db.PASSWORD}@${config.db.HOST}:${config.db.PORT}/${config.db.NAME}`;
-export const dbConn = new Sequelize(DB_URL);
-log(`DB connected to ${DB_URL}`, { color: chalk.yellow });
+export const dbConn = new Sequelize(config.db.NAME, config.db.USER, config.db.PASSWORD, {
+  dialect: config.db.TYPE as Dialect,
+  host: config.db.HOST,
+  logging: config.db.LOGGING ?? console.log,
+  port: config.db.PORT,
+});
 
-(async () => {
-  await dbConn.sync({ force: true });
-  log('All models were synchronized successfully.', { color: chalk.green });
-})();
+if (!config.IS_TEST) {
+  const DB_URL = [
+    `${config.db.TYPE}://`,
+    `${config.db.USER}:${config.db.PASSWORD}`,
+    `@${config.db.HOST}:${config.db.PORT}/${config.db.NAME}`,
+  ].join('');
+  log(`DB connected to ${DB_URL}`, { color: chalk.yellow });
+}
