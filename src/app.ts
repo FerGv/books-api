@@ -4,10 +4,10 @@ import express from 'express';
 import morgan from 'morgan';
 
 // Plugins
-import { createMorganTokens } from './plugins/morgan';
+import { createMorganTokens } from '@/plugins/morgan';
 
 // Routes
-import { router } from './routes';
+import { router } from '@/routes';
 
 createMorganTokens();
 export const app = express();

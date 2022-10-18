@@ -8,7 +8,7 @@ import {
 } from 'sequelize';
 
 // Config
-import { dbConn } from '../db/connection';
+import { dbConn } from '@/db/connection';
 
 export class Book extends Model<InferAttributes<Book>, InferCreationAttributes<Book>> {
   declare id: CreationOptional<number>;

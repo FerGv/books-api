@@ -3,10 +3,10 @@ import chalk from 'chalk';
 import { Sequelize, Dialect } from 'sequelize';
 
 // Config
-import config from '../config';
+import config from '@/config';
 
 // Utils
-import { log } from '../utils/logging';
+import { log } from '@/utils/logging';
 
 export const dbConn = new Sequelize(config.db.NAME, config.db.USER, config.db.PASSWORD, {
   dialect: config.db.TYPE as Dialect,

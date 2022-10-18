@@ -2,13 +2,13 @@
 import request from 'supertest';
 
 // App
-import { app } from '../app';
+import { app } from '@/app';
 
 // Interfaces
-import { IBookCreation } from '../interfaces';
+import { IBookCreation } from '@/interfaces';
 
 // Models
-import { Book } from '../models';
+import { Book } from '@/models';
 
 const INITIAL_BOOKS: IBookCreation[] = [
   {

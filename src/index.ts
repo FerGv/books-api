@@ -3,16 +3,16 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 
 // App
-import { app } from './app';
+import { app } from '@/app';
 
 // Config
-import config from './config';
+import config from '@/config';
 
 // DB
-import { dbConn } from './db/connection';
+import { dbConn } from '@/db/connection';
 
 // Utils
-import { log } from './utils/logging';
+import { log } from '@/utils/logging';
 
 const main = async () => {
   await dbConn.sync({ alter: true });

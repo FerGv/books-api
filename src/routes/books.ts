@@ -2,7 +2,7 @@
 import { Router } from 'express';
 
 // Services
-import { bookService } from '../services';
+import { bookService } from '@/services';
 
 export const bookRouter = Router();
 

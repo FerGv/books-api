@@ -1,8 +1,8 @@
 // Interfaces
-import { IBook, IBookCreation } from '../interfaces';
+import { IBook, IBookCreation } from '@/interfaces';
 
 // Models
-import { Book } from '../models';
+import { Book } from '@/models';
 
 export const createBook = async (data: IBookCreation) => {
   const book = await Book.create(data);
