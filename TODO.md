@@ -1,5 +1,3 @@
 - Use UUID as public identifier
 - Add VSCode recommended extensions/settings/snippets
-- Add testing
-- Add path for "@" imports
 - Add husky to run linter before commit
