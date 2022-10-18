@@ -10,16 +10,15 @@ import {
 // Config
 import { dbConn } from '@/db/connection';
 
-export class Book extends Model<InferAttributes<Book>, InferCreationAttributes<Book>> {
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
   declare uuid: CreationOptional<string>;
-  declare author: string;
-  declare editorial: string;
-  declare title: string;
-  declare year: number;
+  declare email: string;
+  declare password: string;
+  declare username: string;
 }
 
-Book.init(
+User.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -30,14 +29,13 @@ Book.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    author: DataTypes.STRING,
-    editorial: DataTypes.STRING,
-    title: DataTypes.STRING,
-    year: DataTypes.INTEGER,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    username: DataTypes.STRING,
   },
   {
     sequelize: dbConn,
-    modelName: 'Book',
-    tableName: 'books',
+    modelName: 'User',
+    tableName: 'users',
   },
 );

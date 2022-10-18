@@ -6,14 +6,15 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "mikestead.dotenv",
-        "EditorConfig.EditorConfig",
-        "usernamehw.errorlens",
-        "esbenp.prettier-vscode",
-        "ms-vscode.sublime-keybindings",
-        "dbaeumer.vscode-eslint",
-        "ms-azuretools.vscode-docker"
-      ]
+		"mikestead.dotenv",
+		"EditorConfig.EditorConfig",
+		"usernamehw.errorlens",
+		"esbenp.prettier-vscode",
+		"ms-vscode.sublime-keybindings",
+		"dbaeumer.vscode-eslint",
+		"ms-azuretools.vscode-docker",
+		"mrmlnc.vscode-duplicate"
+	]
     }
   }
 }
