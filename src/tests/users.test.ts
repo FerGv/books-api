@@ -43,14 +43,14 @@ describe('Testing Auth API', () => {
   });
 
   it('POST /auth/password/recover should return a link', async () => {
-    const res = await request(app).post(`${BASE_URI}/password/reset`);
+    const res = await request(app).post(`${BASE_URI}/password/recover`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('link');
     expect(res.body.link).toMatch(/^https?:\/\//);
   });
 
   it('POST /auth/password/reset should return a status 204', async () => {
-    const res = await request(app).post(`${BASE_URI}/password/change`);
+    const res = await request(app).post(`${BASE_URI}/password/reset`);
     expect(res.statusCode).toBe(204);
     expect(Object.keys(res.body)).toHaveLength(0);
   });
