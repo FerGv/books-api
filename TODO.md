@@ -2,6 +2,7 @@
 - Add husky to run linter before commit
 - Create README
 - Create GraphQL implementation for API
+- Add Swagger UI
 
 BOOKS
 
