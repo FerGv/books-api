@@ -3,6 +3,9 @@
 - Create README
 - Create GraphQL implementation for API
 - Add Swagger UI
+- Add sockets
+- Add RabbitMQ
+- Add Redis
 
 BOOKS
 
@@ -15,4 +18,10 @@ BOOKS
 AUTH
 
 - Implement JWT for auth
+- Encrypt password
+- Validate that username and email are unique
 - Add blacklist middleware
+
+TESTS
+
+- Use test database

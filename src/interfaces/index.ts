@@ -1,2 +1,3 @@
-export { IBook, IBookCreation } from './book';
-export { IUser, IUserCreation } from './user';
+export * from './auth';
+export * from './book';
+export * from './user';

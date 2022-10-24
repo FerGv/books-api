@@ -22,4 +22,9 @@ export default {
     TYPE: process.env.DB_TYPE || 'mysql',
     USER: process.env.DB_USER!,
   },
+
+  jwt: {
+    SECRET: process.env.JWT_SECRET!,
+    EXPIRES_IN: process.env.JWT_EXPIRES_IN,
+  },
 };

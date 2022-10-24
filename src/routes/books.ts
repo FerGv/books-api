@@ -18,12 +18,12 @@ bookRouter.post('/', async (req, res) => {
 
 bookRouter.get('/:id', async (req, res) => {
   const book = await bookService.getBook(req.params.id);
-  res.send(book);
+  res.json(book);
 });
 
 bookRouter.put('/:id', async (req, res) => {
   const book = await bookService.updateBook(req.params.id, req.body);
-  res.send(book);
+  res.json(book);
 });
 
 bookRouter.delete('/:id', async (req, res) => {
