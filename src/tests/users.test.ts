@@ -41,6 +41,15 @@ describe('Testing Auth API', () => {
     expect(jwt.verify(res.body.token, config.jwt.SECRET)).toHaveProperty('username');
   });
 
+  it('POST /auth/login should return a status code 400 if user and/or password are incorrect', async () => {
+    const res = await request(app).post(`${BASE_URI}/login`).send({
+      username: 'fake',
+      password: 'fake',
+    });
+    expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBeDefined();
+  });
+
   // it('POST /auth/register should create an user', async () => {
   //   const res = await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
   //   expect(res.statusCode).toBe(201);

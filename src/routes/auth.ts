@@ -12,7 +12,7 @@ authRouter.post('/login', async (req, res) => {
   if (token) {
     res.json(token);
   } else {
-    res.status(404).json({ msg: 'User not found' });
+    res.status(400).json({ error: 'User and/or password incorrect' });
   }
 });
 
