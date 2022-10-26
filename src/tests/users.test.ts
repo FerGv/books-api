@@ -14,6 +14,9 @@ import { IUserCreation } from '@/interfaces';
 // Models
 import { User } from '@/models';
 
+// Utils
+import { hashPassword, validatePassword } from '@/utils/auth';
+
 const BASE_URI = '/api/auth';
 const INITIAL_USERS: IUserCreation[] = [
   {
@@ -27,14 +30,28 @@ const INITIAL_USERS: IUserCreation[] = [
     username: 'User test 2',
   },
 ];
+const PLAIN_TEXT_PASSWORD = 'supersecretpassword';
 
 beforeEach(async () => {
   await User.sync({ force: true });
-  await User.bulkCreate(INITIAL_USERS);
+});
+
+describe('Testing Auth utils', () => {
+  it('should encrypt password', async () => {
+    const hashedPassword = await hashPassword(PLAIN_TEXT_PASSWORD);
+    expect(hashedPassword).not.toBe(PLAIN_TEXT_PASSWORD);
+  });
+
+  it('should verify hashed password', async () => {
+    const hashedPassword = await hashPassword(PLAIN_TEXT_PASSWORD);
+    const validPassword = await validatePassword(PLAIN_TEXT_PASSWORD, hashedPassword);
+    expect(validPassword).toBe(true);
+  });
 });
 
 describe('Testing Auth API', () => {
   it('POST /auth/login should return a JWT', async () => {
+    await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
     const res = await request(app).post(`${BASE_URI}/login`).send(INITIAL_USERS[0]);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('token');
@@ -50,11 +67,11 @@ describe('Testing Auth API', () => {
     expect(res.body.error).toBeDefined();
   });
 
-  // it('POST /auth/register should create an user', async () => {
-  //   const res = await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
-  //   expect(res.statusCode).toBe(201);
-  //   expect(res.body).toHaveProperty('id');
-  // });
+  it('POST /auth/register should create an user', async () => {
+    const res = await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
+    expect(res.statusCode).toBe(201);
+    expect(res.body).toHaveProperty('username');
+  });
 
   // it('POST /auth/password/recover should return a link', async () => {
   //   const res = await request(app).post(`${BASE_URI}/password/recover`);

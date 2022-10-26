@@ -18,7 +18,6 @@ BOOKS
 AUTH
 
 - Implement JWT for auth
-- Encrypt password
 - Validate that username and email are unique
 - Add blacklist middleware
 

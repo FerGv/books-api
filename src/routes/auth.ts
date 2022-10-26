@@ -33,5 +33,10 @@ authRouter.post('/password/reset', async (req, res) => {
 
 authRouter.post('/register', async (req, res) => {
   const user = await authService.register(req.body);
-  res.status(201).json(user);
+
+  if (user) {
+    res.status(201).json({ username: user.username });
+  } else {
+    res.status(400).json({ error: 'Incorrect body' });
+  }
 });
