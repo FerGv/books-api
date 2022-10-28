@@ -1,5 +1,5 @@
 // Node
-import path from 'path';
+import path from 'node:path';
 
 // Libraries
 import type { JestConfigWithTsJest } from 'ts-jest';

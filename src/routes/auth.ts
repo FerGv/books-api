@@ -22,8 +22,13 @@ authRouter.post('/password/change', async (req, res) => {
 });
 
 authRouter.post('/password/recover', async (req, res) => {
-  await authService.recoverPassword(req.body);
-  res.sendStatus(200);
+  const recoverLink = await authService.recoverPassword(req.body);
+
+  if (recoverLink) {
+    res.json(recoverLink);
+  } else {
+    res.status(400).json({ error: 'User does not exists' });
+  }
 });
 
 authRouter.post('/password/reset', async (req, res) => {

@@ -18,18 +18,11 @@ import { User } from '@/models';
 import { hashPassword, validatePassword } from '@/utils/auth';
 
 const BASE_URI = '/api/auth';
-const INITIAL_USERS: IUserCreation[] = [
-  {
-    email: 'test@test.com',
-    password: 'test',
-    username: 'User test',
-  },
-  {
-    email: 'test2@test.com',
-    password: 'test2',
-    username: 'User test 2',
-  },
-];
+const USER_TEST: IUserCreation = {
+  email: 'test@test.com',
+  password: 'test',
+  username: 'User test',
+};
 const PLAIN_TEXT_PASSWORD = 'supersecretpassword';
 
 beforeEach(async () => {
@@ -51,8 +44,8 @@ describe('Testing Auth utils', () => {
 
 describe('Testing Auth API', () => {
   it('POST /auth/login should return a JWT', async () => {
-    await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
-    const res = await request(app).post(`${BASE_URI}/login`).send(INITIAL_USERS[0]);
+    await request(app).post(`${BASE_URI}/register`).send(USER_TEST);
+    const res = await request(app).post(`${BASE_URI}/login`).send(USER_TEST);
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('token');
     expect(jwt.verify(res.body.token, config.jwt.SECRET)).toHaveProperty('username');
@@ -68,17 +61,20 @@ describe('Testing Auth API', () => {
   });
 
   it('POST /auth/register should create an user', async () => {
-    const res = await request(app).post(`${BASE_URI}/register`).send(INITIAL_USERS[0]);
+    const res = await request(app).post(`${BASE_URI}/register`).send(USER_TEST);
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty('username');
   });
 
-  // it('POST /auth/password/recover should return a link', async () => {
-  //   const res = await request(app).post(`${BASE_URI}/password/recover`);
-  //   expect(res.statusCode).toBe(200);
-  //   expect(res.body).toHaveProperty('link');
-  //   expect(res.body.link).toMatch(/^https?:\/\//);
-  // });
+  it('POST /auth/password/recover should return a link', async () => {
+    await request(app).post(`${BASE_URI}/register`).send(USER_TEST);
+    const res = await request(app).post(`${BASE_URI}/password/recover`).send({
+      username: USER_TEST.username,
+    });
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('recoverLink');
+    expect(res.body.recoverLink).toMatch(/^https?:\/\//);
+  });
 
   // it('POST /auth/password/reset should return a status 204', async () => {
   //   const res = await request(app).post(`${BASE_URI}/password/reset`);

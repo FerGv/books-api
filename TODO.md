@@ -6,6 +6,7 @@
 - Add sockets
 - Add RabbitMQ
 - Add Redis
+- Add library for request body validation
 
 BOOKS
 
@@ -17,6 +18,7 @@ BOOKS
 
 AUTH
 
+- Send email with link to recover password
 - Implement JWT for auth
 - Validate that username and email are unique
 - Add blacklist middleware
