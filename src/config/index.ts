@@ -3,15 +3,22 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const IS_DEV = process.env.NODE_ENV === 'development';
+// Environments
 const IS_PROD = process.env.NODE_ENV === 'production';
 const IS_TEST = process.env.NODE_ENV === 'test';
+const IS_DEV = process.env.NODE_ENV === 'development' || (!IS_PROD && !IS_TEST);
+
+// App
+const HOST = process.env.HOST || 'localhost';
+const PORT = Number(process.env.PORT) || 7001;
+const URL = `http://${HOST}:${PORT}`;
 
 export default {
   IS_DEV,
   IS_PROD,
   IS_TEST,
-  PORT: Number(process.env.PORT) || 7001,
+
+  app: { HOST, PORT, URL },
 
   db: {
     HOST: process.env.DB_HOST || 'localhost',

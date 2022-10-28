@@ -17,9 +17,13 @@ import { log } from '@/utils/logging';
 const main = async () => {
   await dbConn.sync({ alter: true });
   log('All models were synchronized successfully.', { color: chalk.green });
-  app.listen(config.PORT);
-  log(`Listening on http://localhost:${config.PORT}`);
+  app.listen({
+    host: config.app.HOST,
+    port: config.app.PORT,
+  });
+  log(`Listening on ${config.app.URL}`);
   console.log(figlet.textSync('BOOKS API'));
+  log(`DEV mode: ${config.IS_DEV}\nPROD mode: ${config.IS_PROD}`, { color: chalk.red });
 };
 
 main();
